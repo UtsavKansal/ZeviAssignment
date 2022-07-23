@@ -5,20 +5,29 @@ import SearchIcon from "@material-ui/icons/Search"
 import "./Component/SearchBar.css";
 
 function App() {
+  const data=["Hello","Bye","Hello"];
   return (
     <div className="App">
       <div className="search">
-      <div className="searchInputs">
-        <input
-          type="text"
-          placeholder="Search..."
-        />
-        <div className="searchIcon">
-            <SearchIcon />
+        <div className="searchInputs">
+          <input
+            type="text"
+            placeholder="Search..."
+          />
+          <div className="searchIcon">
+              <SearchIcon />
+          </div>
+        </div>
+        <div className="dataResult">
+          {data.map((item) => {
+            return (
+              <a className="dataItem" href="www.google.com" target="_blank">
+                <p>{item} </p>
+              </a>
+            );
+          })}
         </div>
       </div>
-      
-        </div>
     </div>
   );
 }

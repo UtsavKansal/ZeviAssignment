@@ -1,12 +1,15 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
 .App {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: blue;
-
+  font-family: "Nunito", sans-serif;
+  background-image:url("./866x600-hanging-clothes-rack.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;;
 }
 body {
   padding: 0;
