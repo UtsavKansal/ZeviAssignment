@@ -1,20 +1,40 @@
 import SearchIcon from "@material-ui/icons/Search";
 import "./SearchBar.css";
 import generateData from "../Data/data";
-import React, { useState } from "react";
-
-interface data_type{
-    id: Number,
-    product_name: string,
-    Added_to_wishlist: boolean,
+import React, { useState,useEffect,useRef } from "react";
+import SearchList from "./SearchList"
+interface item_type{
+  id: Number,
+  product_name: string,
+  Added_to_wishlist: boolean,
 }
 
+
+
 const SearchBar=()=>{
+    const [products,setproducts]=useState<item_type[]>([])
 
-    const [data, setdata] = useState(generateData());
+    useEffect(()=>{
+      setproducts(generateData());
+    },[])
+
+    const trending = products.slice(101,112);
     const [visible,setvisible] = useState(false);
-    const trending=data
+    const [filtereddata,setfiltereddata]=useState<item_type[]>([]);
+    const [empty, setempty]=useState(true);
+    const inputReference = useRef(null);
 
+
+    
+    const handlefilter=(event:React.ChangeEvent<HTMLInputElement>)=>{
+      const wordsearched=event.target.value;
+      setempty(wordsearched.length===0?true:false);
+      const filter=products.filter((item: item_type)=>{
+        return item.product_name.toLowerCase().includes(wordsearched.toLowerCase())
+      })
+      setfiltereddata(filter);
+
+    }
 
 
     return(
@@ -26,20 +46,19 @@ const SearchBar=()=>{
             onFocus={(e:React.FocusEvent<HTMLInputElement>)=>{
                 setvisible(true)
               }}
+            onChange={handlefilter}
+            onBlur={(e:React.FocusEvent<HTMLInputElement, Element>)=>{
+              setvisible(false)
+            }}
+
           />
-          <div className="searchIcon" >
+          <div className="searchIcon" onClick={(e : React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
+            setvisible(true)
+          }}>
               <SearchIcon />
           </div>
         </div>
-        {visible && <div className="dataResult">
-          {data.map((item: data_type) => {
-            return (
-              <a className="dataItem" href="www.google.com" target="_blank">
-                <p>{item.product_name} </p>
-              </a>
-            );
-          })}
-        </div>}
+        {visible && <SearchList data={empty?trending:filtereddata}/>}
         
       </div>
     )
