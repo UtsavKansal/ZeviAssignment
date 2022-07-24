@@ -6,11 +6,20 @@
   align-items: center;
   flex-direction: column;
   font-family: "Nunito", sans-serif;
-  background-image:url("./866x600-hanging-clothes-rack.jpg");
+  background-image:url("./img/866x600-hanging-clothes-rack.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;;
 }
+
+.logo img {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  height: 40px;
+  width: 60px;
+}
+
 body {
   padding: 0;
   margin: 0;

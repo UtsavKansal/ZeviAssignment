@@ -3,7 +3,7 @@
     margin-left: 10px;
     margin-right: 10px;
 }
-.searchInputs {
+  .searchInputs {
     display: flex;
   }
   
@@ -18,7 +18,9 @@
     height: 15px;
     width: 100%;
   }
-  
+  input:focus{
+    outline: none;
+  }
   .searchIcon {
     height: 45px;
     width: 50px;
@@ -30,9 +32,7 @@
     border-bottom-left-radius: 0px;
   }
   
-  input:focus {
-    outline: none;
-  }
+  .
   .searchIcon svg {
     font-size: 35px;
   }
@@ -44,6 +44,8 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     overflow: hidden;
     overflow-y: auto;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
   
   .dataResult::-webkit-scrollbar {
@@ -52,24 +54,24 @@
   
   .dataResult .dataItem {
     width: 100%;
-    height: 50px;
+    height: 60px;
     display: flex;
     align-items: center;
     color: black;
+
   }
-  /* .dataItem {
-    display: flex;
-  } */
+
   .dataItem p {
     border: 0;
     border-radius: 10px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
-    font-size: 16px;
+    font-size: 20px;
     height: 15px;
     width: 100%;
     margin-left: 10px;
     text-decoration: none;
+    font-family: "Times New Roman", Times, serif;
   }
   .dataItem:hover  {
     background-color: lightgrey;
@@ -78,15 +80,28 @@
   display: flex;
   margin-right: 10px;
   width: 75px;
-  visibility: hidden;
-
 }
-  
-  
-  .dataItem:hover .itemButtonsContainer
+
+.itemButtonsContainer .viewProductButton{
+  visibility: hidden;
+}
+
+
+  .dataItem:hover .viewProductButton
   {
     visibility: visible;
   }
   
   
- 
+  @media screen and (min-width: 768px)
+  {
+    .search{
+      width: 550px;
+    }
+    .itemButtonsContainer{
+      display: flex;
+      margin-right: 30px;
+      width: 75px;
+    
+    }
+  }
