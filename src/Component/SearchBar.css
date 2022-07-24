@@ -1,5 +1,7 @@
 .search{
     margin-top: 105px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .searchInputs {
     display: flex;
@@ -37,7 +39,7 @@
   .dataResult {
     margin-top: 5px;
     width: 100%;
-    height: 200px;
+    height: 400px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     overflow: hidden;
@@ -55,16 +57,35 @@
     align-items: center;
     color: black;
   }
-  
+  /* .dataItem {
+    display: flex;
+  } */
   .dataItem p {
+    border: 0;
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 16px;
+    height: 15px;
+    width: 100%;
     margin-left: 10px;
-  }
-  a {
     text-decoration: none;
   }
-  
-  a:hover {
+  .dataItem:hover  {
     background-color: lightgrey;
+  }
+  .itemButtonsContainer{
+  display: flex;
+  margin-right: 10px;
+  width: 75px;
+  visibility: hidden;
+
+}
+  
+  
+  .dataItem:hover .itemButtonsContainer
+  {
+    visibility: visible;
   }
   
   

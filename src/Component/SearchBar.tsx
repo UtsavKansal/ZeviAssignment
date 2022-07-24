@@ -1,10 +1,13 @@
 import SearchIcon from "@material-ui/icons/Search";
 import "./SearchBar.css";
 import generateData from "../Data/data";
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState,useEffect, useRef } from "react";
 import SearchList from "./SearchList"
+
+
+
 interface item_type{
-  id: Number,
+  id: number,
   product_name: string,
   Added_to_wishlist: boolean,
 }
@@ -18,11 +21,11 @@ const SearchBar=()=>{
       setproducts(generateData());
     },[])
 
-    const trending = products.slice(101,112);
+    const trending = products.slice(87,98);
     const [visible,setvisible] = useState(false);
     const [filtereddata,setfiltereddata]=useState<item_type[]>([]);
     const [empty, setempty]=useState(true);
-    const inputReference = useRef(null);
+    const inputReference = useRef<HTMLInputElement>(null);
 
 
     
@@ -33,7 +36,16 @@ const SearchBar=()=>{
         return item.product_name.toLowerCase().includes(wordsearched.toLowerCase())
       })
       setfiltereddata(filter);
+    }
 
+    const handleFocus=()=>{
+      console.log(inputReference.current);
+      inputReference.current?.focus();
+    }
+
+
+    const togglevisibility=()=>{
+      setvisible(visible => !visible);
     }
 
 
@@ -42,23 +54,19 @@ const SearchBar=()=>{
         <div className="searchInputs">
           <input
             type="text"
+            ref={inputReference}
             placeholder="Search..."
-            onFocus={(e:React.FocusEvent<HTMLInputElement>)=>{
-                setvisible(true)
-              }}
+            onFocus={()=>setvisible(true)}
             onChange={handlefilter}
-            onBlur={(e:React.FocusEvent<HTMLInputElement, Element>)=>{
-              setvisible(false)
-            }}
+            // onBlur={togglevisibility}
 
           />
-          <div className="searchIcon" onClick={(e : React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
-            setvisible(true)
-          }}>
+          <div className="searchIcon" onClick={handleFocus}>
               <SearchIcon />
           </div>
         </div>
-        {visible && <SearchList data={empty?trending:filtereddata}/>}
+        {/* {visible && <SearchList data={empty?trending:filtereddata.slice(0,16)}/>} */}
+        {visible && <SearchList data={empty?trending:filtereddata.slice(0,15)} productsState={[products,setproducts]}/>}
         
       </div>
     )
